@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html> 
+<head>
+  <title>TimeTable(고성훈/201631001)-(TimeTable.HTML)</title>
+  <style>
+    body {
+      background: #d9d9e0;
+    }
+
+    table {
+      margin: auto;
+      border-radius: 2em;
+      overflow: hidden;
+    }
+
+    th, td {
+      min-width: 10em;
+      padding: 1em;
+      text-align: center;
+    }
+
+    td:first-child, th {
+      background: #b3b2cc;
+      font-weight: bold;
+      color: #555;
+    }
+    td[data-subject] {
+      background: #9795ba;
+      color: white;
+    }
+  </style>
+</head> 
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>1교시 (09:00)</td>
+        <td></td>
+        <td rowspan="6"></td>
+        <td rowspan="3" data-subject>웹컨텐츠제작기술</td>
+        <td rowspan="5"></td>
+        <td rowspan="9"></td>
+      </tr>
+      <tr>
+        <td>2교시 (10:00)</td>
+        <td rowspan="2" data-subject>데이터구조응용</td>
+      </tr>
+      <tr>
+        <td>3교시 (11:00)</td>
+      </tr>
+      <tr>
+        <td>4교시 (12:00)</td>
+        <td rowspan="4"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>5교시 (13:00)</td>
+        <td rowspan="2" data-subject>프로그래밍언어구성론</td>
+      </tr>
+      <tr>
+        <td>6교시 (14:00)</td>
+        <td data-subject>프로그래밍언어구성론</td>
+      </tr>
+      <tr>
+        <td>7교시 (15:00)</td>
+        <td data-subject>운영체제</td>
+        <td rowspan="3" data-subject>자바스크립트</td>
+        <td rowspan="3"></td>
+      </tr>
+      <tr>
+        <td>8교시 (16:00)</td>
+        <td data-subject>데이터베이스</td>
+        <td data-subject>데이터구조응용</td>
+      </tr>
+      <tr>
+        <td>9교시 (17:00)</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</body>        
+</html>
