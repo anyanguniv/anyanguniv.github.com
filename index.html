@@ -1,145 +1,113 @@
-<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <!-- title -->
-  <title>TITLE 시작</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    #header {
+      width: 800px;
+      margin: 0 auto;
+      background-color: red;
+    }
+    #wrap {
+      width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    #aside {
+      width: 200px; float: left; background: blue; 
+    }
+    #content {
+      width: 590px;
+      float: left;
+      background: green;
+    }
+    p {
+      color: blue;
+    }
+
+    li.select {
+      color: violet;
+    }
+    .item {
+      color: red;
+    }
+    .header {
+      background-color: blue;
+    }
+
+    input[type="text"] {
+      background: red;
+    }
+    input[type="password"] {
+      background: blue;
+    }
+    img[src$="png"] {
+      border: 3px solid blue;
+    }
+    img[src$="jpg"] {
+      border: 3px dashed red;
+    }
+    img[src$="gif"] {
+      border: 3px dotted green;
+    }
+  </style>
 </head>
 <body>
-  
-  <a id="menu" href="#first">Go to first</a>
-  <a href="#second">Go to second</a>
+  <img src="img/jajq.png" width="200" height="250">
+  <img src="img/node.jpg" width="200" height="250">
+  <img src="img/ux.gif" width="200" height="250">
+
   <hr>
 
-  <h1>홈피 시작</h1>
-  <form method="GET">
-    <h4>GET</h4>
-    <label for="name">이름</label> <input id="name" type="text" name="search"><br>
-    <input type="button"><br>
-    <input type="hidden"><br>
-    <input type="image"><br>
-    <label><input type="checkbox" name="check"> CHECK ME</label><br>
-    <label><input type="radio" name="radio"> RADIO ME</label><br>
-    <input type="password" name="pass"><br>
-    <input type="file" name="file"><br>
-    <label for="textarea">하고 싶은 말을 쓰세요</label><br>
-    <textarea id="textarea">하고싶은 말을
-여기에 쓰세요
-    </textarea><br>
-    <select multiple>
-      <option>=== 선택해주세요 ===</option>
-      <option>김밥</option>
-      <option>떡볶이</option>
-      <option>순대</option>
-      <option>돼지부속</option>
-      <option>라면</option>
-    </select><br>
-    <select multiple>
-      <optgroup label="html5">
-        <option>multimedia</option>
-        <option>connectivity</option>
-        <option>device</option>
-      </optgroup>
-      <optgroup label="css3">
-        <option>multimedia</option>
-        <option>connectivity</option>
-        <option>device</option>
-      </optgroup>
-      <optgroup label="분식">
-        <option>김밥</option>
-        <option>떡볶이</option>
-        <option>순대</option>
-        <option>돼지부속</option>
-        <option>라면</option>
-      </optgroup>
-    </select><br>
-    <input type="reset">
-    <input type="submit">
-  </form>
-  <form method="POST">
-    <h4>POST</h4>
-    <input type="text" name="search">
-    <input type="submit">
-  </form>
   <form>
-    <h4>입력양식 예제</h4>
-    <fieldset>
-      <legend>입력 양식</legend>
-      <table>
-        <tr>
-          <td><label for="user">이메일</label></td>
-          <td><input type="email" id="user"></td>
-        </tr>
-        <tr>
-          <td><label for="pass">비밀번호</label></td>
-          <td><input type="password" id="pass"></td>
-        </tr>
-        <tr>
-          <td><label for="select">선택해주세요</label></td>
-          <td>
-            <select id="select" multiple>
-              <optgroup label="html5">
-                <option>multimedia</option>
-                <option>connectivity</option>
-                <option>device</option>
-              </optgroup>
-              <optgroup label="css3">
-                <option>multimedia</option>
-                <option>connectivity</option>
-                <option>device</option>
-              </optgroup>
-              <optgroup label="분식">
-                <option>김밥</option>
-                <option>떡볶이</option>
-                <option>순대</option>
-                <option>돼지부속</option>
-                <option>라면</option>
-              </optgroup>
-            </select>
-          </td>
-        </tr>
-      </table>
-
-      <input type="submit">
-    </fieldset>
+    <input type="text">
+    <input type="password">
   </form>
-  <h1 id="first">First</h1>
-  <img src="img/Desert.jpg" alt="Desert" height="200">
-  <img src="http://placehold.it/300x200">
-  <img src="http://tis.anyang.ac.kr/patis/system/FileController.do?platformType=nexacro&method=view&f0=gadmin&f1=insa/profile/photo/20170830&f2=%EC%9E%84%EA%B6%8C%EB%AC%B5.GIF" height="200">
-  <img src="img/123.jpg" alt="not found" height="200">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur tortor id lectus faucibus, nec pellentesque eros dignissim. Proin viverra ante ut nisl placerat fermentum. Morbi a lacus porta, varius enim posuere, mattis quam. Mauris vitae diam erat. Nulla auctor, ex non pretium porttitor, dui metus lobortis sapien, a laoreet diam enim eu mi. Mauris convallis venenatis volutpat. Sed rutrum consectetur massa non dictum. Sed sed lorem lacinia, semper sapien id, malesuada turpis. Nam consectetur, ex vel rhoncus aliquam, ipsum justo suscipit mi, ut volutpat sapien lacus ut risus. Proin vitae cursus lorem. Suspendisse dapibus congue sapien ac pretium. Morbi non tempus dui.
-  </p>
 
-  <h1 id="second">Second</h1>
-  <p>
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-    Sed porttitor lacus a augue vehicula, at placerat felis aliquet. Duis sed purus nisl. Aliquam pharetra, lorem et vehicula bibendum, diam lacus feugiat metus, vel bibendum turpis leo mollis ex. Duis leo orci, molestie vel malesuada sed, volutpat a enim. Nunc id ante erat. Aliquam erat volutpat. Maecenas finibus magna elit, non egestas dui condimentum nec. Pellentesque eget mattis mauris. Maecenas eget sollicitudin mi. Praesent lectus lectus, consequat sit amet volutpat feugiat, porttitor a ex. Nam ac bibendum elit. Etiam vitae scelerisque quam. Nulla varius quis tellus vel vulputate. Suspendisse in cursus lacus, eget mattis tortor. Nullam purus velit, lacinia eget interdum ac, semper eu urna. Sed hendrerit nibh at risus porttitor, et ullamcorper eros suscipit.
-  </p>
+  <h1 class="select">Lorem ipsum</h1>
+  <ul>
+    <li class="select">lorem ipsum</li>
+    <li>lorem ipsum</li>
+    <li class="select">lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
 
-  <a href="#menu">Go to menu</a>
+  <h1 class="item header">Lorem ipsum</h1>
+  <ul>
+    <li class="select">lorem ipsum</li>
+    <li>lorem ipsum</li>
+    <li class="select">lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+
+  <hr>
+
+  <div id="header">
+    <h1>header</h1>
+  </div>
+  <div id="wrap">
+    <div id="aside">
+      <h1>aside</h1>
+    </div>
+    <div id="content">
+      <h1>content</h1>
+    </div>
+  </div>
+
+  <div>Lorem ipsum</div>
+  <div>Lorem ipsum</div>
+  <div>Lorem ipsum</div>
+  <div>Lorem ipsum</div>
+
+  <h1>ㅁㄴㅇㄹ</h1>
+  <span>Lorem ipsum</span>
+  <span>Lorem ipsum</span>
+  <span>Lorem ipsum</span>
+  <span>Lorem ipsum</span>
+
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor a officiis quasi adipisci eos expedita minus sed culpa cupiditate obcaecati, repellat itaque fuga odio ab minima, aperiam at saepe consequatur.</p>
 </body>
 </html>
