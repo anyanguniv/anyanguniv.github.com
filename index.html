@@ -6,6 +6,7 @@
   <title>Document</title>
 
   <style>
+    /*
     #header {
       width: 800px;
       margin: 0 auto;
@@ -53,9 +54,118 @@
     img[src$="gif"] {
       border: 3px dotted green;
     }
+    */
+    #header > h1 {
+      color: red;
+    }
+    #section h1 {
+      color: orange;
+    }
+
+    /* 동위 선택자 */
+    h1 + h2 {
+      color: blue;
+    }
+    h1 ~ h2 {
+      background: gray;
+    }
+
+    /* 반응형 태그 */
+    h1:hover {
+      color: red;
+    }
+    h1:active {
+      color: white;
+    }
+
+    input[type="email"]:disabled {
+      background: black;
+      color: white;
+    }
+    input[type="email"]:focus {
+      background: gray;
+    }
+    input[type="checkbox"]:checked + div {
+      color: transparent;
+    }
+    div {
+      transition: color 0.3s ease-out;
+    }
+
+    .nth-child-practice {
+      text-align: center;
+      list-style: none;
+      color: white;
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .nth-child-practice > li {
+      display: inline-block;
+      width: 50px;
+      padding: 10px;
+    }
+    .nth-child-practice > li:nth-child(2n+1) {
+      background: darkred;
+    }
+    .nth-child-practice > li:nth-child(2n) {
+      background: black;
+    }
+    .nth-child-practice > li:first-child {
+      border-top-left-radius: 1em;
+      border-bottom-left-radius: 1em;
+    }
+    .nth-child-practice > li:last-child {
+      border-top-right-radius: 1em;
+      border-bottom-right-radius: 1em;
+    }
   </style>
 </head>
 <body>
+  <ul class="nth-child-practice">
+    <li>a</li><li>b</li><li>c</li><li>d</li><li>e</li><li>f</li><li>g</li><li>h</li>
+  </ul>
+
+  <hr>
+
+  <input type="email" placeholder="enabled">
+  <input type="email" placeholder="disabled" disabled>
+  <input type="checkbox"> 
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia distinctio enim, modi labore ad beatae quam veniam molestias aut dolor sapiente consectetur eaque voluptatibus accusamus obcaecati incidunt quas sunt illo.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni maxime vero, delectus omnis praesentium quae ullam quas libero aspernatur quam ipsam, reprehenderit perferendis iure fuga nemo fugiat excepturi hic dolorem!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aliquam quasi assumenda placeat nemo provident reiciendis nam vitae illo, deleniti magni deserunt ipsa non repellendus? Esse ipsum natus labore ea.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia distinctio enim, modi labore ad beatae quam veniam molestias aut dolor sapiente consectetur eaque voluptatibus accusamus obcaecati incidunt quas sunt illo.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni maxime vero, delectus omnis praesentium quae ullam quas libero aspernatur quam ipsam, reprehenderit perferendis iure fuga nemo fugiat excepturi hic dolorem!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aliquam quasi assumenda placeat nemo provident reiciendis nam vitae illo, deleniti magni deserunt ipsa non repellendus? Esse ipsum natus labore ea.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia distinctio enim, modi labore ad beatae quam veniam molestias aut dolor sapiente consectetur eaque voluptatibus accusamus obcaecati incidunt quas sunt illo.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni maxime vero, delectus omnis praesentium quae ullam quas libero aspernatur quam ipsam, reprehenderit perferendis iure fuga nemo fugiat excepturi hic dolorem!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aliquam quasi assumenda placeat nemo provident reiciendis nam vitae illo, deleniti magni deserunt ipsa non repellendus? Esse ipsum natus labore ea.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia distinctio enim, modi labore ad beatae quam veniam molestias aut dolor sapiente consectetur eaque voluptatibus accusamus obcaecati incidunt quas sunt illo.
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni maxime vero, delectus omnis praesentium quae ullam quas libero aspernatur quam ipsam, reprehenderit perferendis iure fuga nemo fugiat excepturi hic dolorem!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aliquam quasi assumenda placeat nemo provident reiciendis nam vitae illo, deleniti magni deserunt ipsa non repellendus? Esse ipsum natus labore ea
+  </div>
+
+  <h1>반응형 태그</h1>
+  <h1>Header 1</h1>
+  <h2>Header 2</h2>
+  <h2>Header 2</h2>
+  <h2>Header 2</h2>
+  <h2>Header 2</h2>
+  <h2>Header 2</h2>
+
+
+  <div id="header">
+    <h1 class="title">Lorem ipsum</h1>
+    <div id="nav">
+      <h1>navigation</h1>
+    </div>
+  </div>
+  <div id="section">
+    <h1 class="title">Lorem ipsum</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat blanditiis, quo repellendus dignissimos totam veniam. Tempora deserunt quidem nobis error beatae dolorem corrupti, eos eligendi impedit, eveniet nulla, magnam recusandae?</p>
+  </div>
+
   <img src="img/jajq.png" width="200" height="250">
   <img src="img/node.jpg" width="200" height="250">
   <img src="img/ux.gif" width="200" height="250">
