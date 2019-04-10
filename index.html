@@ -12,18 +12,92 @@
     h1::first-letter {
       font-size: 3em;
     }
+    a {
+      text-decoration: none;
+    }
+    a:link::after {
+      content: ' - ' attr(href);
+    }
     p::selection {
       background: black;
       color: red;
     }
+    
+    h1 {
+      margin: 10px;
+      font-size: 200%;
+      line-height: 2em;
+    }
+    p:nth-child(1) {}
+    p:nth-child(2) { font-size: 1em; }
+    p:nth-child(3) { font-size: 2em; }
+    p:nth-child(4) { font-size: 3em; }
+
+    * {
+      margin: 0; padding: 0;
+    }
+    h1 { background-color: white; }
+    h2 { background-color: blue; }
+    h3 { background-color: yellow; }
+    h4 { background-color: gray; }
+    h5 { background-color: azure; }
+
+    body {
+      background-image: url('img/Desert.jpg');
+    }
+    #box {
+      display: inline-block;
+      background-color: red;
+      width: 300px;
+      height: 50px;
+      margin: 10px;
+      opacity: 0.5;
+    }
+    .box {
+      width: 800px;
+      border-width: thick;
+      border-style: dashed;
+      border-color: black;
+      border-radius: 20px;
+    }
+    div {
+      border: 20px solid black;
+      margin: 10px;
+      padding: 10px;
+    }
+    div:first-child {
+      background: red;
+      box-sizing: content-box;
+    }
+    div:last-child {
+      background: orange;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
-  <h1>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-  </h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate labore rem facere incidunt! Totam optio animi nemo enim corporis iusto alias inventore, aliquam suscipit! Cum libero odit expedita impedit placeat?
-  </p>
+  <div class="box">
+    <h1>Lorem, ipsum</h1>
+  </div>
+  <div>
+    <div>HELLO</div>
+  </div>
+  
+  <span>Dummy</span>
+  <div id="box">
+    <span>Lorem ipsum dolor, sit amet 
+      consectetur adipisicing elit.</span>
+  </div>
+  <span>Dummy</span>
+
+  <h1>A</h1>
+  <h2>B</h2>
+  <h3>C</h3>
+  <h4>D</h4>
+  <h5>E</h5>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate labore rem facere incidunt! Totam optio animi nemo enim corporis iusto alias inventore, aliquam suscipit! Cum libero odit expedita impedit placeat?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate labore rem facere incidunt! Totam optio animi nemo enim corporis iusto alias inventore, aliquam suscipit! Cum libero odit expedita impedit placeat?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate labore rem facere incidunt! Totam optio animi nemo enim corporis iusto alias inventore, aliquam suscipit! Cum libero odit expedita impedit placeat?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate labore rem facere incidunt! Totam optio animi nemo enim corporis iusto alias inventore, aliquam suscipit! Cum libero odit expedita impedit placeat?</p>
 </body>
 </html>
