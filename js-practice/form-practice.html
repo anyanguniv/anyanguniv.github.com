@@ -1,0 +1,153 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>201631001 고성훈</title>
+  <style>
+    .fixed-width {
+      display: inline-block;
+      width: 10em;
+      text-align: right;
+    }
+    input:not([type="radio"]),
+    button {
+      width: 10em;
+    }
+  </style>
+</head>
+<body>
+  <h3>201631001 고성훈</h3>
+  input type
+  <hr>
+  <ol>
+    <li>
+      <span class="fixed-width">User ID:</span> <input type="text" size="20" value="user id"></li>
+    <li>
+      <span class="fixed-width">Data List:</span>
+      <input type="text" list="countries">
+      <datalist id="countries">
+        <option value="가나">가나</option>
+        <option value="기니">기니</option>
+        <option value="스위스">스위스</option>
+      </datalist>
+    </li>
+    <li>
+      <span class="fixed-width">Password:</span> <input type="password" size="20" value="12345">
+    </li>
+    <li><span class="fixed-width">TextArea:</span> <textarea cols="20" rows="3"></textarea></li>
+    <li><span class="fixed-width">Button:</span> <input type="button" value="button"></li>
+    <li><span class="fixed-width">Submit:</span> <input type="submit" value="submit"></li>
+    <li><span class="fixed-width">Reset:</span> <input type="reset" value="reset"></li>
+    <li><span class="fixed-width">Image:</span> <input type="image" src="../img/sprites.png" alt="이미지버튼"></li>
+    <li>
+        <span class="fixed-width">아침에 먹고 싶은 것:</span>
+      <input type="radio" name="lunch" value="1"> 짜장면<img src="">
+      <input type="radio" name="lunch" value="2" checked> 탕수육<img src="">
+      <input type="radio" name="lunch" value="3"> 짬뽕<img src="">
+    </li>
+    <li>
+        <span class="fixed-width">저녁에 먹고 싶은 것:</span>
+      <select name="dinner">
+        <option value="1">짜장면</option>
+        <option value="1">탕수육</option>
+        <option value="1" selected>짬뽕</option>
+      </select>
+    </li>
+    <li>
+        <span class="fixed-width">Label 요소 사용하기</span>
+      <ol>
+        <li>
+          <label for="login-id"><span class="fixed-width">사용자 ID:</span></label>
+          <input type="text" id="login-id" size="15" value="">
+        </li>
+        <li>
+          <label><span class="fixed-width">사용자 ID:</span> <input type="text" size="15" value=""></label>
+        </li>
+        <li>
+          <label>
+            <span class="fixed-width">짜장면-1</span> <input type="radio" name="lunch2" value="1">
+          </label>
+          <label>
+            짜장면-2 <input type="radio" name="jjm2" value="2">
+          </label>
+          <label>
+            짜장면-3 <input type="radio" name="jjm2" value="3">
+          </label>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <span class="fixed-width">Color:</span> <input type="color" value="#00ff00" onchange="document.body.style.color=this.value">
+    </li>
+    <li>
+      <span class="fixed-width">Month:</span> <input type="month" value="2019-04">
+    </li>
+    <li>
+      <span class="fixed-width">Week:</span> <input type="week" value="2019-w16">
+    </li>
+    <li>
+      <span class="fixed-width">Date:</span> <input type="date" value="2019-04-10">
+    </li>
+    <li>
+      <span class="fixed-width">Time:</span> <input type="time" value="21:30">
+    </li>
+    <li>
+      <span class="fixed-width">DateTime-local:</span> <input type="datetime-local" value="2019-04-10">
+    </li>
+    <li>
+      <span class="fixed-width">Number:</span> <input type="number" min="0.0" max="10.0" step="0.5" value="5.0">
+    </li>
+    <li>
+      <span class="fixed-width">Range: 0&deg;</span> <input type="range" min="0" max="100" list="temperatures"> 100&deg;
+      <datalist id="temperatures">
+        <option value="10" label="Low">Low</option>
+        <option value="50" label="Medium">Med.</option>
+        <option value="90" label="High">High</option>
+      </datalist>
+    </li>
+    <li>
+      <span class="fixed-width">Email:</span> <input type="email" placeholder="your@email.com">
+    </li>
+    <li>
+      <span class="fixed-width">URL:</span> <input type="url" placeholder="http://yoursite.com/">
+    </li>
+    <li>
+      <span class="fixed-width">Tel.:</span> <input type="tel" placeholder="010-0000-1111">
+    </li>
+    <li>
+      <span class="fixed-width">Search:</span> <input type="search" placeholder="검색어">
+    </li>
+    <li>
+      <span class="fixed-width">Fieldset:</span>
+      <fieldset style="width: 250px; text-align: center">
+        <legend>회원정보</legend>
+        <table style="text-align:right">
+          <tr>
+            <td>E-mail</td>
+            <td><input type="email"></td>
+          </tr>
+          <tr>
+            <td>Homepage</td>
+            <td><input type="url"></td>
+          </tr>
+          <tr>
+            <td>Tel.</td>
+            <td><input type="tel"></td>
+          </tr>
+        </table>
+      </fieldset>
+    </li>
+    <li>
+      Button typ
+      <hr>
+      <ol>
+        <li><span class="fixed-width">Button:</span> <button type="button" value="button">Button</button></li>
+        <li><span class="fixed-width">Submit:</span> <button type="submit" value="submit">Submit</button></li>
+        <li><span class="fixed-width">Reset:</span> <button type="reset" value="reset">Reset</button></li>
+        <li><span class="fixed-width">Image:</span> <button type="image" src="" alt="이미지 버튼">Image</button></li>
+      </ol>
+    </li>
+  </ol>
+</body>
+</html>

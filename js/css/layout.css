@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+}
+
+.subsite {
+  padding-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.f-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 -15px;
+}
+.f-col {
+  position: relative;
+  width: 100%;
+  padding: 0 15px;
+}
+.col-same {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+.col-1 {
+  flex: 0 0 8.333333%;
+  max-width: 8.333333%;
+}
+.col-2 {
+  flex: 0 0 16.666667%;
+  max-width: 16.6666667%;
+}
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.col-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+.align-items-start {
+  align-items: flex-start;
+}
+
+.site-frame {
+  border: none;
+}
+
+.container {
+  margin: auto;
+  max-width: 1000px;
+  min-width: 800px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.container.densed {
+  max-width: 800px;
+  min-width: 500px;
+}
+
+.article-container {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 130px;
+}
+.article > * {
+  flex: 1;
+}
+.article > iframe[name="aside"] {
+  max-width: 350px;
+}
+.article > iframe[name="article"] {
+  flex: auto;
+}
+
+.footer {
+  position: absolute;
+  background-color: #aec1d0;
+  width: 100%;
+  height: 130px;
+  bottom: 0;
+  left:0;
+}

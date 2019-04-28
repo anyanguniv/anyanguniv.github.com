@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+/**
+ * Site header style.
+ */
+.site-header {
+  position: fixed;
+  width: 100vw;
+  height: 50px;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+
+  background-color: white;
+  border-bottom: 2px solid #333;
+}
+
+.site-brand-container {
+  display: inline-block;
+  vertical-align: top;
+
+  background-color: #333;
+}
+
+/**
+ * Brand anchor style.
+ */
+.site-brand,
+.site-brand:visited {
+  display: inline-block;
+  padding: 10px 0.5em;
+  padding-top: 0;
+
+  color: white;
+  font-size: 40px;
+  font-weight: 100;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.site-brand::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 0;
+
+  background-color: white;
+  transition: width 0.2s;
+}
+.site-brand:hover::after {
+  width: 100%;
+}
+
+/**
+ * Site navigator style.
+ */
+.site-nav {
+  display: inline-block;
+  list-style: none;
+  margin: 0 2em;
+  padding: 0;
+}
+.site-nav > li {
+  display: inline-block;
+}
+.site-nav > li > a,
+.site-nav > li > a:visited {
+  display: block;
+  min-width: 5em;
+  padding: 13px;
+
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.site-nav > li > a::after {
+  display: block;
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: #333;
+  transition: width 0.3s;
+}
+.site-nav > li > a:hover::after {
+  width: 100%;
+}
