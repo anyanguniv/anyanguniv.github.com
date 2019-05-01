@@ -4,153 +4,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
+
   <style>
-    /*
+    * {
+      margin: 0;
+      padding: 0;
+    }
     body {
-      background-image: url('img/BackgroundFront.png'), url('img/BackgroundBack.png');
-      background-size: 100% 30%;
-      background-repeat:  no-repeat;
-      background-attachment: fixed;
-      background-position: bottom;
-      font-family: serif;
+      font-family: 'Nanum Brush Script', cursive;
     }
-
-    .font-big {
-      font-size: 2em;
+    li {
+      list-style: none;
     }
-    .font-italic {
-      font-style: italic;
-    }
-    .font-bold {
-      font-style: bold;
-    }
-    .font-center {
-      text-align: center;
-    }
-
-    .button {
-      width: 150px; height: 70px; background-color: #987654;
-      border: 1px solid #000;
-      border-radius: 1em;
-    }
-    .button > a {
-      display: block;
-      line-height: 2;
+    a {
       text-decoration: none;
     }
-    .box {
-      width: 100px;
-      height: 100px;
-      position: absolute;
+    img {
+      border: none;
     }
-    .box:nth-child(1) { left: 10px; top: 10px; z-index: 100; }
-    .box:nth-child(2) { left: 50px; top: 50px; z-index: 10; }
-    .box:nth-child(3) { left: 90px; top: 90px; z-index: 1; }
-    .red { background-color: red; }
-    .blue { background-color: blue; }
-    .green { background-color: green; }
 
-    body > div {
+    #main_header {
+      width: 960px;
+      margin: auto;
+      border: 1px solid black;
+      height: 160px;
       position: relative;
-      border: 2px solid black;
-      width: 400px; height: 100px;
-      overflow: auto;
     }
-    */
-    img { float: left; }
-    .box1 {
-      width: 100px; height: 100px;
-      background-color: red;
-      margin: 10px;
-      padding: 10px;
-      float: right;
+    #main_header > #title {
+      position: absolute;
+      left: 20px;
+      top: 30px;
     }
-  </style>
-
-  <style>
-    body {
-      width: 800px;
-      margin: 0 auto;
+    #main_header > #main_lnb {
+      position: absolute;
+      right: 0;
     }
-    h1 {
-      text-shadow: 5px 5px 10px violet;
-    }
-    #aside {
-      width: 200px;
-      float: left;
-    }
-    #section {
-      width: 600px;
-      float: left;
-    }
-    #footer {
-      clear: both;
-    }
-    #wrap {
-      overflow: hidden;
+    #main_header > #main_gnb {
+      position: absolute;
+      right: 0;
+      top: 10px;
     }
   </style>
 </head>
 <body>
-  <div id="header">
-    <h1>Header</h1>
-  </div>
-  <div id="nav">
-    <h1>Navigation</h1>
-  </div>
-  <div id="wrap">
-    <div id="aside">
-      <h1>Aside</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestiae id doloribus assumenda culpa repudiandae! Dolores, ex ipsam? Error reprehenderit deserunt odio saepe pariatur ad sapiente officia laudantium tempora sed.</p>
+  <header id="main_header">
+    <div id="title">
+      <h1>HTML5 수업</h1>
+      <h2>HTML5 + CSS3</h2>
     </div>
-    <div id="section">
-      <h1>Section</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam earum at minus in incidunt perspiciatis repudiandae porro repellendus omnis et labore dicta explicabo, temporibus, iure, culpa nisi! Nam, cum nisi.
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam earum at minus in incidunt perspiciatis repudiandae porro repellendus omnis et labore dicta explicabo, temporibus, iure, culpa nisi! Nam, cum nisi.
-      </p>
-    </div>
-  </div>
-  <div id="footer">
-    <h1>Footer</h1>
-  </div>
-  <hr>
-  <div class="box1">1</div>
-  <div class="box1">2</div>
 
-  <img src="img/hanbit.jpg">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, fuga laudantium blanditiis nam earum dolorem modi possimus nostrum ut, soluta dicta. Consequuntur vero aut enim error deserunt tempore repudiandae in?
+    <nav id="main_lnb">
+      Nav1
+      <ul>
+        <li><a href="http://www.daum.net">Daum</a></li>
+        <li><a href="#">Mobile</a></li>
+        <li><a href="#">Game</a></li>
+        <li><a href="#">Simulation</a></li>
+        <li><a href="#">Data</a></li>
+      </ul>
+    </nav>
 
-  <h1>Lorem ipsum</h1>
-  <div>
-    <div class="box red"></div>
-    <div class="box green"></div>
-    <div class="box blue"></div>
+    <nav id="main_gnb">
+      Nav2
+      <ul>
+        <li><a href="#">HTML5</a></li>
+        <li><a href="#">CSS3</a></li>
+        <li><a href="#">JavaScript</a></li>
+        <li><a href="#">jQuery</a></li>
+        <li><a href="#">Node.js</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="content">
+    <section>section</section>
   </div>
-  <h1>Lorem ipsum</h1>
 
-  <hr>
+  <aside>
+    aside
+  </aside>
 
-  <p class="font-center">Lorem ipsum</p>
-  <span class="font-center">Lorem ipsum</span>
-  <div class="button">
-    <a href="#" class="font-big font-italic font-center">Click</a>
-  </div>
-  <p class="font-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic culpa voluptatibus harum delectus quidem quia cumque quasi quis ab, non nisi ad assumenda fugiat, nesciunt dignissimos. Aut tenetur aperiam vel!</p>
+  <footer>
+  </footer>
+
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium eaque saepe facilis incidunt, vel cupiditate a dolore illo quasi excepturi dolorum nobis commodi blanditiis labore quidem, perspiciatis id nisi fuga!</p>
 </body>
 </html>
