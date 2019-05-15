@@ -26,10 +26,46 @@
     /**
      * 헤더
      */
+    #main-header {
+      height: 45px;
+      background: url('img/header_background.png');
+      /* 자손 위치 지정 */
+      position: relative;
+      text-align: center;
+      line-height: 45px;
+    }
+    #main-header > h1 {
+      color: white;
+    }
+    #main-header > a, #main-header > label {
+      display: block;
+      height: 32px;
+      position: absolute;
+    }
+    #main-header > a.left {
+      width: 62px;
+      left: 5px;
+      top: 7px;
+    }
+    #main-header > label.right {
+      width: 32px;
+      right: 5px;
+      top: 7px;
+    }
 
     /** 
      * 스프라이트 이미지
      */
+    #main-header > a.left {
+      background: url('img/sprites.png');
+      background-position: 0px 0px;
+      text-indent: -999999999999px;
+    }
+    #main-header > label.right {
+      background: url('img/sprites.png');
+      background-position: -62px 0px;
+      text-indent: -999999999999px;
+    }
 
     /** 
      * 토글 목록 
@@ -57,9 +93,11 @@
 
   <div id="wrap">
     <header id="main-header">
-      <a class="left" href="#">Main</a>
+      <a class="left" href="#"></a>
       <h1>Mobile</h1>
-      <label class="right" for="toggle" onclick="">Toggle</label>
+      <label class="right" for="toggle" onclick="">
+        A
+      </label>
     </header>
   </div>
 </body>
