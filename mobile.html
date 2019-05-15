@@ -70,6 +70,30 @@
     /** 
      * 토글 목록 
      */
+    #toggle {
+      display: none;
+    }
+    #toggle + #wrap > #toggle-gnb-wrap {
+      display: none;
+    }
+    #toggle:checked + #wrap > #toggle-gnb-wrap {
+      display: block;
+    }
+    #toggle-gnb-wrap {
+      background: #363636;
+      padding: 15px;
+    }
+    #toggle-gnb {
+      background: white;
+      padding: 5px;
+    }
+    #toggle-gnb > ul {
+      overflow: hidden;
+    }
+    #toggle-gnb > ul > li {
+      width: 80px;
+      float: left;
+    }
 
     /**
      * 네비 1
@@ -99,6 +123,20 @@
         A
       </label>
     </header>
+
+    <div id="toggle-gnb-wrap">
+      <div id="toggle-gnb">
+        <ul>
+          <li><a href="#">btn</a></li>
+          <li><a href="#">btn</a></li>
+          <li><a href="#">btn</a></li>
+          <li><a href="#">btn</a></li>
+          <li><a href="#">btn</a></li>
+          <li><a href="#">btn</a></li>
+          <li><a href="#">btn</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </body>
 </html>
