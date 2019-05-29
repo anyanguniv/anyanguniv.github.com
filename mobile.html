@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>스마트폰 레이아웃</title>
+  <title>Document</title>
 
   <style>
     /**
@@ -12,131 +13,169 @@
     * {
       margin: 0;
       padding: 0;
-    }
-    body {
-      font-family: 'Helvetica', sans-serif;
-    }
-    li {
-      list-style: none;
+      font: normal 12px 'dotum';
     }
     a {
       text-decoration: none;
+    }
+    img {
+      border: 0;
+    }
+    ul {
+      list-style: none;
+    }
+    body {
+      position: relative;
+      width: 980px;
+      margin: 0 auto;
     }
 
     /**
      * 헤더
      */
     #main-header {
-      height: 45px;
-      background: url('img/header_background.png');
-      /* 자손 위치 지정 */
       position: relative;
-      text-align: center;
-      line-height: 45px;
+      height: 75px;
     }
-    #main-header > h1 {
-      color: white;
-    }
-    #main-header > a, #main-header > label {
-      display: block;
-      height: 32px;
+    #main-header > h1.logo {
       position: absolute;
+      left: 15px;
+      top: 10px;
     }
-    #main-header > a.left {
-      width: 62px;
-      left: 5px;
-      top: 7px;
-    }
-    #main-header > label.right {
-      width: 32px;
-      right: 5px;
-      top: 7px;
+    #main-header > .login-menu {
+      position: absolute;
+      top: 10px;
+      right: 0px;
     }
 
-    /** 
-     * 스프라이트 이미지
+    /**
+     * 사이드
      */
-    #main-header > a.left {
-      background: url('img/sprites.png');
-      background-position: 0px 0px;
-      text-indent: -999999999999px;
+    #global-aside {
+      position: absolute;
+      left: 990px;
+      top: 75px;
+      width: 90px;
     }
-    #main-header > label.right {
-      background: url('img/sprites.png');
-      background-position: -62px 0px;
-      text-indent: -999999999999px;
-    }
-
-    /** 
-     * 토글 목록 
-     */
-    #toggle {
-      display: none;
-    }
-    #toggle + #wrap > #toggle-gnb-wrap {
-      display: none;
-    }
-    #toggle:checked + #wrap > #toggle-gnb-wrap {
+    #global-aside > a {
       display: block;
     }
-    #toggle-gnb-wrap {
-      background: #363636;
-      padding: 15px;
-    }
-    #toggle-gnb {
-      background: white;
-      padding: 5px;
-    }
-    #toggle-gnb > ul {
+
+    /**
+     * 네비 위
+     */
+    #top-gnb {
       overflow: hidden;
     }
-    #toggle-gnb > ul > li {
-      width: 80px;
+    #top-gnb > .menu {
       float: left;
+      width: 140px;
+      height: 50px;
+      background: url('img/top_gnb.png');
     }
+    #top-gnb > .item-1 { background-position: 0px 0px; }
+    #top-gnb > .item-1:hover { background-position: 0px -350px; }
+    #top-gnb > .item-2 { background-position: 0px -50px; }
+    #top-gnb > .item-2:hover { background-position: 0px -400px; }
+    #top-gnb > .item-3 { background-position: 0px -100px; }
+    #top-gnb > .item-3:hover { background-position: 0px -450px; }
+    #top-gnb > .item-4 { background-position: 0px -150px; }
+    #top-gnb > .item-4:hover { background-position: 0px -500px; }
+    #top-gnb > .item-5 { background-position: 0px -200px; }
+    #top-gnb > .item-5:hover { background-position: 0px -550px; }
+    #top-gnb > .item-6 { background-position: 0px -250px; }
+    #top-gnb > .item-6:hover { background-position: 0px -600px; }
+    #top-gnb > .item-7 { background-position: 0px -300px; }
+    #top-gnb > .item-7:hover { background-position: 0px -650px; }
 
     /**
-     * 네비 1
+     * 네비 아래
      */
+    #bottom-gnb {
+      overflow: hidden;
+    }
+    #bottom-gnb > .menu {
+      float: left;
+      width: 98px;
+      height: 80px;
+      background: url('img/bottom_gnb.png');
+    }
+    #bottom-gnb > .item:nth-child(1) { background-position-y: calc(-80px * 0); }
+    #bottom-gnb > .item:nth-child(1):hover { background-position-y: calc(-80px * 10); }
+    #bottom-gnb > .item:nth-child(2) { background-position-y: calc(-80px * 1); }
+    #bottom-gnb > .item:nth-child(2):hover { background-position-y: calc(-80px * 11); }
+    #bottom-gnb > .item:nth-child(3) { background-position-y: calc(-80px * 2); }
+    #bottom-gnb > .item:nth-child(3):hover { background-position-y: calc(-80px * 12); }
+    #bottom-gnb > .item:nth-child(4) { background-position-y: calc(-80px * 3); }
+    #bottom-gnb > .item:nth-child(4):hover { background-position-y: calc(-80px * 13); }
+    #bottom-gnb > .item:nth-child(5) { background-position-y: calc(-80px * 4); }
+    #bottom-gnb > .item:nth-child(5):hover { background-position-y: calc(-80px * 14); }
+    #bottom-gnb > .item:nth-child(6) { background-position-y: calc(-80px * 5); }
+    #bottom-gnb > .item:nth-child(6):hover { background-position-y: calc(-80px * 15); }
+    #bottom-gnb > .item:nth-child(7) { background-position-y: calc(-80px * 6); }
+    #bottom-gnb > .item:nth-child(7):hover { background-position-y: calc(-80px * 16); }
+    #bottom-gnb > .item:nth-child(8) { background-position-y: calc(-80px * 7); }
+    #bottom-gnb > .item:nth-child(8):hover { background-position-y: calc(-80px * 17); }
+    #bottom-gnb > .item:nth-child(9) { background-position-y: calc(-80px * 8); }
+    #bottom-gnb > .item:nth-child(9):hover { background-position-y: calc(-80px * 18); }
+    #bottom-gnb > .item:nth-child(10) { background-position-y: calc(-80px * 9); }
+    #bottom-gnb > .item:nth-child(10):hover { background-position-y: calc(-80px * 19); }
 
     /**
-     * 네비 2
+     * 목록
      */
 
     /**
      * 본문
      */
-
-    /**
-     * 푸터
-     */
   </style>
 </head>
 <body>
-  <input id="toggle" type="checkbox">
+  <header id="main-header">
+    <h1 class="logo">
+      <a href="#"><img src="img/title.png" alt=""></a>
+    </h1>
 
-  <div id="wrap">
-    <header id="main-header">
-      <a class="left" href="#"></a>
-      <h1>Mobile</h1>
-      <label class="right" for="toggle" onclick="">
-        A
-      </label>
-    </header>
-
-    <div id="toggle-gnb-wrap">
-      <div id="toggle-gnb">
-        <ul>
-          <li><a href="#">btn</a></li>
-          <li><a href="#">btn</a></li>
-          <li><a href="#">btn</a></li>
-          <li><a href="#">btn</a></li>
-          <li><a href="#">btn</a></li>
-          <li><a href="#">btn</a></li>
-          <li><a href="#">btn</a></li>
-        </ul>
-      </div>
+    <div class="login-menu">
+      <span><a href="#">로그인</a></span>
+      <span><a href="#">회원가입</a></span>
+      <span><a href="#">고객센터</a></span>
     </div>
-  </div>
+  </header>
+
+  <aside id="global-aside">
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+    <a href="#"><img src="http://placehold.it/90x160"></a>
+  </aside>
+
+  <nav id="top-gnb">
+    <div class="menu item-1 active"></div>
+    <div class="menu item-2"></div>
+    <div class="menu item-3"></div>
+    <div class="menu item-4"></div>
+    <div class="menu item-5"></div>
+    <div class="menu item-6"></div>
+    <div class="menu item-7"></div>
+  </nav>
+
+  <nav id="bottom-gnb">
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+    <div class="menu item"></div>
+  </nav>
 </body>
 </html>
