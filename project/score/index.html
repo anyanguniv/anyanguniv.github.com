@@ -36,6 +36,8 @@
             <div class="group-container">
               <div class="group">DB</div>
               <div><a href="javascript:resetDB()">초기화</a></div>
+              <div><a href="javascript:;" data-toggle="modal" data-target="#data-import-modal">가져오기</a></div>
+              <div><a href="javascript:exportDB()">Excel로 내보내기</a></div>
             </div>
 
             <div class="group-container">
@@ -53,10 +55,41 @@
     </div>
   </div>
 
+  <div id="data-import-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Excel 파일로부터 데이터 가져오기</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <form id="data-import-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="data-import-file-input" class="col-form-label">XLSX 파일 선택</label>
+              <input type="file" class="form-control" id="data-import-file-input" onchange="importDB(event)">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/cpexcel.js" integrity="sha256-W3rJZOZXlV1xks8sdGPOTRzqRS3Z09PwehXSQXEq0gU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.core.min.js" integrity="sha256-w2+7lOFXi10be27+g2wMPTukkf/TGYvl4SLLtVdL2YI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.extendscript.js" integrity="sha256-w14PRAn/+0kriaFiZMuFIvRBJvkbw2jO+0swy9sTRrQ=" crossorigin="anonymous"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.min.js" integrity="sha256-/YsIw0C9o5pLqqgKbSVgGl2a37ar8yIPHSkdeWbOcq4=" crossorigin="anonymous"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js" integrity="sha256-EQzGHttE5chohPPcfQRKms62H/ULAhcHrZw5PF1+/9A=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/alasql@0.4"></script>
   <script src="js/master.js"></script>
   <script>
@@ -93,6 +126,45 @@
       window.location.reload(true);
     }
 
+    function importDB(e) {
+      if (!window.site.auth.user.can('write')) {
+        e.target.value = null;
+        alert('작업을 수행할 권한이 없습니다.');
+        return;
+      }
+
+      if (!confirm("데이터를 가져오기 위해 현재 DB을 초기화 합니다. 계속하시겠습니까?")) {
+        e.target.value = null;
+        return;
+      }
+      
+      alasql('BEGIN TRANSACTION');
+      alasql('SELECT * FROM FILE(?,{headers:true})', [e], function (data) {
+        e.target.value = null;
+
+        alasql.promise('DELETE FROM Student; INSERT INTO Student SELECT * FROM ?', [data])
+          .then(function () {
+            alasql('COMMIT TRANSACTION');
+            alert('데이터를 성공적으로 가져왔습니다.');
+          })
+          .catch(function () {
+            alasql('ROLLBACK TRANSACTION');
+            alert('데이터 가져오기에 실패했습니다.');
+          });
+      });
+    }
+
+    function exportDB() {
+      //window.site.runSQL('SELECT * INTO XLSX("students.xlsx",{headers:true}) FROM Student;');
+      alasql.promise('SELECT * INTO XLSX("Students.xlsx", {headers:true}) FROM Student')
+        .then(function () {
+          alert('내보내기를 수행했습니다.');
+        })
+        .catch(function () {
+          alert('내보내기에 실패했습니다.');
+        });
+    }
+
     window.addEventListener('message', function (e) {
       const sql = e.data;
       e.source.postMessage(alasql(sql), e.origin);
@@ -116,6 +188,16 @@
           e.preventDefault();
         }
       };
+
+      $('#data-import-form').on('submit', function (e) {
+        e.preventDefault();
+
+        if (!window.site.auth.user.can('write')) {
+          alert('작업을 수행할 권한이 없습니다.');
+          return;
+        }
+
+      });
 
       $siteContent.on('load', function (e) {
         const src = document.querySelector('#site-content').contentWindow.location.href;
