@@ -1,8 +1,5 @@
 @charset "utf-8";
 
-.site-aside {
-  height: 100vh;
-}
 .site-aside > a,
 .site-aside > a:visited {
   display: block;
@@ -15,21 +12,30 @@
 }
 
 .site-aside > #aside-menu {
-  list-style: none;
-  max-width: 20em;
+  min-width: 200px;
   margin: auto;
+  text-align: center;
 }
-.site-aside > #aside-menu > li > a,
-.site-aside > #aside-menu > li > a:visited {
+.group-container {
+  display: inline-block;
+  width: 280px;
+  text-align: justify;
+  vertical-align: top;
+}
+#aside-menu.invisible .group-container {
+  height: 0;
+}
+.group-container a,
+.group-container a:visited {
   display: block;
   padding: 5px 0;
   padding-left: 0.5em;
   border-radius: 5px;
 }
-.site-aside > #aside-menu > li > a:hover {
+.group-container a:hover {
   text-decoration: none;
 }
-.site-aside > #aside-menu > .group {
+.group-container > .group {
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 22px;

@@ -17,25 +17,33 @@
         <aside class="site-aside">
           <a target="subframe" href="show.html">성적 관리자</a>
 
-          <ul id="aside-menu" class="invisible">
+          <div id="aside-menu" class="invisible">
 
-            <li class="group">관리</li>
-            <li><a target="subframe" href="show.html">개별/전체 조회</a></li>
-            <li><a target="subframe" href="insert.html">성적 입력</a></li>
+            <div class="group-container">
+              <div class="group">관리</div>
+              <div><a target="subframe" href="show.html">개별/전체 조회</a></div>
+              <div><a target="subframe" href="insert.html">성적 입력</a></div>
+            </div>
 
-            <li class="group">보고서</li>
-            <li><a target="subframe" href="report_nameorder.html">이름순 정렬</a></li>
-            <li><a target="subframe" href="report_grade.html">학생별 등급</a></li>
-            <li><a target="subframe" href="report_graph.html">과목별 점수 그래프</a></li>
-            <li><a target="subframe" href="report_gradegraph.html">등급 분포 그래프</a></li>
+            <div class="group-container">
+              <div class="group">보고서</div>
+              <div><a target="subframe" href="report_nameorder.html">이름순 정렬</a></div>
+              <div><a target="subframe" href="report_grade.html">학생별 등급</a></div>
+              <div><a target="subframe" href="report_graph.html">과목별 점수 그래프</a></div>
+              <div><a target="subframe" href="report_gradegraph.html">등급 분포 그래프</a></div>
+            </div>
 
-            <li class="group">DB</li>
-            <li><a href="javascript:resetDB()">초기화</a></li>
+            <div class="group-container">
+              <div class="group">DB</div>
+              <div><a href="javascript:resetDB()">초기화</a></div>
+            </div>
 
-            <li class="group">사용자</li>
-            <li><a href="javascript:logout()">로그아웃</a></li>
+            <div class="group-container">
+              <div class="group">사용자</div>
+              <div><a href="javascript:logout()">로그아웃</a></div>
+            </div>
 
-          </ul>
+          </div>
         </aside>
       </div>
 
