@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>성적 관리자</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row align-items-stretch">
+      <div class="col-12 col-lg-3">
+        <aside class="site-aside">
+          <a target="subframe" href="show.html">성적 관리자</a>
+
+          <ul id="aside-menu" class="invisible">
+
+            <li class="group">관리</li>
+            <li><a target="subframe" href="show.html">개별/전체 조회</a></li>
+            <li><a target="subframe" href="insert.html">성적 입력</a></li>
+
+            <li class="group">보고서</li>
+            <li><a target="subframe" href="report_nameorder.html">이름순 정렬</a></li>
+            <li><a target="subframe" href="report_grade.html">학생별 등급</a></li>
+            <li><a target="subframe" href="report_graph.html">과목별 점수 그래프</a></li>
+            <li><a target="subframe" href="report_gradegraph.html">등급 분포 그래프</a></li>
+
+            <li class="group">DB</li>
+            <li><a href="javascript:resetDB()">초기화</a></li>
+
+            <li class="group">사용자</li>
+            <li><a href="javascript:logout()">로그아웃</a></li>
+
+          </ul>
+        </aside>
+      </div>
+
+      <div class="col">
+        <iframe id="site-content" name="subframe" src="login.html" style="padding-top: 40px"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alasql@0.4"></script>
+  <script src="js/master.js"></script>
+  <script>
+    const $siteContent = $('#site-content');
+
+    window.site = {
+      auth: new Auth(),
+      runSQL: alasql,
+
+      navigate: function (loc) {
+        window.subframe.location = loc;
+      },
+    };
+
+    var shouldReload = false;
+
+    function logout() {
+      window.site.auth.logout();
+      window.site.navigate('login.html');
+    }
+
+    function resetDB() {
+      if (!site.auth.user.can('write')) {
+        alert('권한이 없습니다.');
+        return;
+      }
+
+      if (!confirm('정말로 초기화 하시겠습니까?')) {
+        return;
+      }
+
+      window.localStorage.clear();
+      shouldReload = true;
+      window.location.reload(true);
+    }
+
+    window.addEventListener('message', function (e) {
+      const sql = e.data;
+      e.source.postMessage(alasql(sql), e.origin);
+    }, false);
+
+    $(function () {
+      alasql.promise('CREATE LOCALSTORAGE DATABASE IF NOT EXISTS jsDB;')
+      alasql('ATTACH LOCALSTORAGE DATABASE jsDB;');
+      alasql('USE jsDB;');
+      alasql(
+        'CREATE TABLE IF NOT EXISTS Student (' +
+          'SID VARCHAR(20) PRIMARY KEY UNIQUE NOT NULL,' +
+          'Name STRING NOT NULL,' +
+          'KoreanScore INT NOT NULL,' +
+          'MathScore INT NOT NULL,' +
+          'EnglishScore INT NOT NULL);'
+      );
+
+      window.onbeforeunload = function (e) {
+        if (!shouldReload) {
+          e.preventDefault();
+        }
+      };
+
+      $siteContent.on('load', function (e) {
+        const src = document.querySelector('#site-content').contentWindow.location.href;
+
+        if (window.site.auth.hasLogged) {
+          $('#aside-menu').removeClass('invisible');
+        } else if (src.endsWith('login.html')) {
+          $('#aside-menu').addClass('invisible');
+          return;
+        } else {
+          e.preventDefault();
+          $siteContent.attr('src', 'login.html');
+          $('#aside-menu').addClass('invisible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

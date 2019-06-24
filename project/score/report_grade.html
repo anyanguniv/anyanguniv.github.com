@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+
+  <h2>
+    보고서 : 학생별 등급 <button class="btn btn-sm btn-secondary d-print-none" onclick="window.print()">프린트</button>
+  </h2>
+  <hr>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>등수</th>
+        <th>학번</th>
+        <th>이름</th>
+        <th>국어점수</th>
+        <th>수학점수</th>
+        <th>영어점수</th>
+        <th>총점</th>
+        <th>등급</th>
+      </tr>
+    </thead>
+
+    <tbody id="table-tbody"></tbody>
+  </table>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="js/master.js"></script>
+  <script>
+    const $tbody = $('#table-tbody');
+
+    function showRecords() {
+      const records = parent.site.runSQL(
+        `SELECT *, (CAST(KoreanScore AS NUMBER) + CAST(MathScore AS NUMBER) + CAST(EnglishScore AS NUMBER)) AS Total FROM Student ORDER BY Total DESC;`);
+
+      // Reset the table.
+      $tbody.html('');
+
+      for (var i = 0; i < records.length; ++i) {
+        const totalScore = records[i].Total;
+
+        var grade = '';
+        if (totalScore >= 250) {
+          grade = 'A';
+        } else if (totalScore >= 200) {
+          grade = 'B';
+        } else if (totalScore >= 150) {
+          grade = 'C';
+        } else if (totalScore >= 100) {
+          grade = 'D';
+        } else {
+          grade = 'F';
+        }
+
+        $tbody.append(
+          '<tr>' +
+            `<td>${i + 1}등</td>` +
+            `<td>${records[i].SID}</td>` +
+            `<td>${records[i].Name}</td>` +
+            `<td>${records[i].KoreanScore}</td>` +
+            `<td>${records[i].MathScore}</td>` +
+            `<td>${records[i].EnglishScore}</td>` +
+            `<td>${totalScore}</td>` +
+            `<td>${grade}</td>` +
+          '</tr>');
+      }
+    }
+
+    showRecords();
+  </script>
+</body>
+</html>

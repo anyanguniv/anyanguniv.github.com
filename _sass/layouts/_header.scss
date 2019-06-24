@@ -1,0 +1,39 @@
+.site-header {
+  height: $brand-container-size;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.site-header > .brand-container {
+  min-width: $brand-container-size;
+  min-height: $brand-container-size;
+  background-color: $primary-color;
+
+  & > a, & > a:visited {
+    display: block;
+    line-height: $brand-container-size;
+    color: white;
+    font-size: 22px;
+    font-style: italic;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+.site-header > ul {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+
+  & > li {
+    display: inline-block;
+
+    & > a, & > a:visited {
+      display: block;
+      padding: 0 2em;
+      color: $primary-color;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}

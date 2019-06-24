@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>	
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> Lab_Dom(가로로 출력하는 구구단)</title>
+    <style>
+        div#area{ font-size: 20px; }
+    </style>
+</head>
+<body>
+	DOM(document object model)을 이용하기<br>
+	-(메시지 출력과 가로로 출력되는 구구단)- <hr>
+   <input type="button" id="exIF" value="조건문(if)">
+   <input type="button" id="exSWITCH" value="조건문(switch)">
+   <input type="button" id="exFOR" value="반복문(for)">
+   <input type="button" id="exWHILE" value="반복문(while)">
+   <input type="button" id="exDOWHILE" value="반복문(do~while)">
+   <hr>
+   
+   <div id="area1">
+	결과가 출력되는 영역-1 - 명령어 설명 출력       
+   </div>
+      <hr>
+	범위 지정 : 
+	<input type="text" list="what" size="3" id="start"> 
+	~ 
+	<input type="text" list="what" size="3" id="end"> 
+	<datalist id="what">
+		<option value=1>
+		<option value=2>
+		<option value=3>
+		<option value=4>
+		<option value=5>
+	</datalist>
+	
+   <input type="button" id="sBtn" value="구구단">
+   <hr>
+
+   <div id="area2">
+	결과가 출력되는 영역-2 - 구구단 출력       
+   </div> 
+   <hr>
+</body>
+</html>
+ 
+<script>
+    var area1 = document.getElementById("area1");
+    var area2 = document.getElementById("area2");
+    //아이디가 area인 DOM(document object model, 문서 객체 모델) 생성(참조)
+
+    var btn = document.getElementById("sBtn");
+	
+    btn.onclick = function()
+	{   var gugudan = "";
+        var start = Number(document.getElementById("start").value);
+        var end = Number(document.getElementById("end").value);
+        if(start > end)
+		{   //시작값이 끝 값보다 크면 값을 바꿔줌
+            var tmp = start;
+            start = end;
+            end = tmp;
+        }
+		gugudan += "<table>"
+        for(var i = 1 ; i <= 9 ; i++)
+		{
+			gugudan += "<tr>"
+            for(var j = start ; j <= end ; j++)
+			{
+				gugudan += "<td>"
+                gugudan += j+" * "+i+" = </td><td align=\"right\">"+(j*i)+"&nbsp; &nbsp; &nbsp; ";
+				gugudan += "</td>"
+            }
+			gugudan += "</tr>"
+         }
+		 gugudan += "</table>"
+        area2.innerHTML = gugudan;
+    }
+    
+    var btn_IF = document.getElementById("exIF");
+    btn_IF.onclick = function()		{ area1.innerHTML = "IF 에 대한 설명"; }
+	var btn_SWITCH = document.getElementById("exSWITCH");
+    btn_SWITCH.onclick = function()	{ area1.innerHTML = "SWITCH 에 대한 설명"; }
+	var btn_FOR = document.getElementById("exFOR");
+    btn_FOR.onclick = function()	{ area1.innerHTML = "반복문 FOR <pre>for (statement 1; statement 2; statement 3;) {\n    // code block to be executed\n}</pre>"; }
+	var btn_WHILE = document.getElementById("exWHILE");
+    btn_WHILE.onclick = function()	{ area1.innerHTML = "WHILE 에 대한 설명"; }
+	var btn_DOWHILE = document.getElementById("exDOWHILE");
+    btn_DOWHILE.onclick = function(){ area1.innerHTML = "Do~While 에 대한 설명"; }
+	
+</script>

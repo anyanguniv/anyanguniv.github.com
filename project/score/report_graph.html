@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+
+  <h2>
+    보고서 : 과목별 점수 그래프 <button class="btn btn-sm btn-secondary d-print-none" onclick="window.print()">프린트</button>
+  </h2>
+  <hr>
+
+  <div id="chart-score" style="width: 800px; height: 500px; margin:auto"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="js/master.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    const scores = parent.site.runSQL(
+      'SELECT \
+        AVG(CAST(KoreanScore AS NUMBER)) AS KoreanAvg, \
+        AVG(CAST(MathScore AS NUMBER)) AS MathAvg, \
+        AVG(CAST(EnglishScore AS NUMBER)) AS EngAvg, \
+        MAX(CAST(KoreanScore AS NUMBER)) AS KoreanMax, \
+        MAX(CAST(MathScore AS NUMBER)) AS MathMax, \
+        MAX(CAST(EnglishScore AS NUMBER)) AS EngMax, \
+        MIN(CAST(KoreanScore AS NUMBER)) AS KoreanMin, \
+        MIN(CAST(MathScore AS NUMBER)) AS MathMin, \
+        MIN(CAST(EnglishScore AS NUMBER)) AS EngMin \
+      FROM Student;'
+    )[0];
+
+    function drawChart() {
+      var dtArr = [
+        ['과목', '평균', '최고점', '최저점'],
+        ['국어', scores.KoreanAvg, scores.KoreanMax, scores.KoreanMin],
+        ['수학', scores.MathAvg, scores.MathMax, scores.MathMin],
+        ['영어', scores.EngAvg, scores.EngMax, scores.EngMin],
+      ];
+
+      var data = google.visualization.arrayToDataTable(dtArr);
+
+      var options = {
+        chart: {
+          title: '과목별 점수',
+          //subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        }
+      };
+
+      var chart = new google.charts.Bar(document.querySelector('#chart-score'));
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  </script>
+</body>
+</html>

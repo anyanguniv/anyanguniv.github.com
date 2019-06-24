@@ -1,222 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+---
+layout: default
+---
 
-  <style>
-    /**
-     * 초기화
-     */
-    * {
-      margin: 0;
-      padding: 0;
-      font: normal 12px 'dotum';
-    }
-    a {
-      text-decoration: none;
-    }
-    img {
-      border: 0;
-    }
-    ul {
-      list-style: none;
-    }
-    body {
-      position: relative;
-      width: 980px;
-      margin: 0 auto;
-    }
+<div class="d-flex" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0">
+  <div id="banner-image-next" class="index__banner align-self-stretch">
+    <div id="banner-image-current" class="index__banner index__banner-next"></div>
+  </div>
+  
+  <div class="align-self-start">
+    <div class="index__heading">
+      <h1 id="index-banner" data-banner="0">
+        <div class="category">
+          <div class="current"></div>
+          <div class="next"></div>
+        </div>
 
-    /**
-     * 헤더
-     */
-    #main-header {
-      position: relative;
-      height: 75px;
-    }
-    #main-header > h1.logo {
-      position: absolute;
-      left: 15px;
-      top: 10px;
-    }
-    #main-header > .login-menu {
-      position: absolute;
-      top: 10px;
-      right: 0px;
-    }
-
-    /**
-     * 사이드
-     */
-    #global-aside {
-      position: absolute;
-      left: 990px;
-      top: 75px;
-      width: 90px;
-    }
-    #global-aside > a {
-      display: block;
-    }
-
-    /**
-     * 네비 위
-     */
-    #top-gnb {
-      overflow: hidden;
-    }
-    #top-gnb > .menu {
-      float: left;
-      width: 140px;
-      height: 50px;
-      background: url('img/top_gnb.png');
-    }
-    #top-gnb > .item-1 { background-position: 0px 0px; }
-    #top-gnb > .item-1:hover { background-position: 0px -350px; }
-    #top-gnb > .item-2 { background-position: 0px -50px; }
-    #top-gnb > .item-2:hover { background-position: 0px -400px; }
-    #top-gnb > .item-3 { background-position: 0px -100px; }
-    #top-gnb > .item-3:hover { background-position: 0px -450px; }
-    #top-gnb > .item-4 { background-position: 0px -150px; }
-    #top-gnb > .item-4:hover { background-position: 0px -500px; }
-    #top-gnb > .item-5 { background-position: 0px -200px; }
-    #top-gnb > .item-5:hover { background-position: 0px -550px; }
-    #top-gnb > .item-6 { background-position: 0px -250px; }
-    #top-gnb > .item-6:hover { background-position: 0px -600px; }
-    #top-gnb > .item-7 { background-position: 0px -300px; }
-    #top-gnb > .item-7:hover { background-position: 0px -650px; }
-
-    /**
-     * 네비 아래
-     */
-    #bottom-gnb {
-      overflow: hidden;
-    }
-    #bottom-gnb > .menu {
-      float: left;
-      width: 98px;
-      height: 80px;
-      background: url('img/bottom_gnb.png');
-    }
-    #bottom-gnb > .item:nth-child(1) { background-position-y: calc(-80px * 0); }
-    #bottom-gnb > .item:nth-child(1):hover { background-position-y: calc(-80px * 10); }
-    #bottom-gnb > .item:nth-child(2) { background-position-y: calc(-80px * 1); }
-    #bottom-gnb > .item:nth-child(2):hover { background-position-y: calc(-80px * 11); }
-    #bottom-gnb > .item:nth-child(3) { background-position-y: calc(-80px * 2); }
-    #bottom-gnb > .item:nth-child(3):hover { background-position-y: calc(-80px * 12); }
-    #bottom-gnb > .item:nth-child(4) { background-position-y: calc(-80px * 3); }
-    #bottom-gnb > .item:nth-child(4):hover { background-position-y: calc(-80px * 13); }
-    #bottom-gnb > .item:nth-child(5) { background-position-y: calc(-80px * 4); }
-    #bottom-gnb > .item:nth-child(5):hover { background-position-y: calc(-80px * 14); }
-    #bottom-gnb > .item:nth-child(6) { background-position-y: calc(-80px * 5); }
-    #bottom-gnb > .item:nth-child(6):hover { background-position-y: calc(-80px * 15); }
-    #bottom-gnb > .item:nth-child(7) { background-position-y: calc(-80px * 6); }
-    #bottom-gnb > .item:nth-child(7):hover { background-position-y: calc(-80px * 16); }
-    #bottom-gnb > .item:nth-child(8) { background-position-y: calc(-80px * 7); }
-    #bottom-gnb > .item:nth-child(8):hover { background-position-y: calc(-80px * 17); }
-    #bottom-gnb > .item:nth-child(9) { background-position-y: calc(-80px * 8); }
-    #bottom-gnb > .item:nth-child(9):hover { background-position-y: calc(-80px * 18); }
-    #bottom-gnb > .item:nth-child(10) { background-position-y: calc(-80px * 9); }
-    #bottom-gnb > .item:nth-child(10):hover { background-position-y: calc(-80px * 19); }
-
-    /**
-     * 목록
-     */
-
-    /**
-     * 본문
-     */
-    #graph {
-      width: 610px;
-      border: 3px solid black;
-    }
-    .bar {
-      width: 10px;
-      height: 50px;
-      background-color: orange;
-      margin: 5px;
-      transition: 3s;
-    }
-    .graph:hover .bar {
-      width: 600px;
-    }
-    .graph-1 .bar:nth-child(1) { transition-timing-function: linear; }
-    .graph-1 .bar:nth-child(2) { transition-timing-function: ease; }
-    .graph-1 .bar:nth-child(3) { transition-timing-function: ease-in; }
-    .graph-1 .bar:nth-child(4) { transition-timing-function: ease-out; }
-    .graph-1 .bar:nth-child(5) { transition-timing-function: ease-in-out; }
-
-    .graph-2 .bar:nth-child(1) { transition-delay: 0.2s; }
-    .graph-2 .bar:nth-child(2) { transition-delay: 0.4s; }
-    .graph-2 .bar:nth-child(3) { transition-delay: 0.6s; }
-    .graph-2 .bar:nth-child(4) { transition-delay: 0.8s; }
-    .graph-2 .bar:nth-child(5) { transition-delay: 1.0s; }
-  </style>
-</head>
-<body>
-  <header id="main-header">
-    <h1 class="logo">
-      <a href="#"><img src="img/title.png" alt=""></a>
-    </h1>
-
-    <div class="login-menu">
-      <span><a href="#">로그인</a></span>
-      <span><a href="#">회원가입</a></span>
-      <span><a href="#">고객센터</a></span>
+        <div class="title">
+          <div class="current"></div>
+          <div class="next"></div>
+        </div>
+      </h1>
     </div>
-  </header>
 
-  <aside id="global-aside">
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-    <a href="#"><img src="http://placehold.it/90x160"></a>
-  </aside>
+    <div class="index__bio">
+      <section>
+        <h2>Name</h2>
+        <p>고성훈 <small>201631001</small></p>
+      </section>
 
-  <nav id="top-gnb">
-    <div class="menu item-1 active"></div>
-    <div class="menu item-2"></div>
-    <div class="menu item-3"></div>
-    <div class="menu item-4"></div>
-    <div class="menu item-5"></div>
-    <div class="menu item-6"></div>
-    <div class="menu item-7"></div>
-  </nav>
+      <section>
+        <h2>University</h2>
+        <p><a href="http://www.anyang.ac.kr" target="_blank">안양대학교</a> <small>컴퓨터공학과</small></p>
+      </section>
 
-  <nav id="bottom-gnb">
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-    <div class="menu item"></div>
-  </nav>
+      <section>
+        <h2>Working on</h2>
+        <p><a href="http://redot.kr" target="_blank">the spot.</a> <small>선임연구원</small></p>
+      </section>
 
-  <div class="graph graph-1">
-    <div class="bar">1</div>
-    <div class="bar">2</div>
-    <div class="bar">3</div>
-    <div class="bar">4</div>
-    <div class="bar">5</div>
+      <section>
+        <h2>Loves</h2>
+        <p>
+          Teaching &middot; Cat &middot; A<sup>+</sup><br>
+          <small class="no-bar">(sometimes programming)</small>
+        </p>
+      </section>
+
+      <section>
+        <h2>Interested in</h2>
+        <p>OOP &amp; Web Dev.</p>
+      </section>
+
+      <section>
+        <h2>Ability</h2>
+        <p>Sleeping <small class="no-bar">... if it counts</small></p>
+      </section>
+    </div>
   </div>
+</div>
 
-  <div class="graph graph-2">
-    <div class="bar">1</div>
-    <div class="bar">2</div>
-    <div class="bar">3</div>
-    <div class="bar">4</div>
-    <div class="bar">5</div>
-  </div>
-</body>
-</html>
+<script>
+const banners = [
+  { category: 'Attending university', title: 'Anyang University', image: "{{ '/img/ayu.jpg' | prepend: site.baseurl }}", origin: '-80px -140px' },
+  { category: 'Majoring in', title: 'Computer Science', image: "{{ '/img/cs.jpg' | prepend: site.baseurl }}", origin: '0' },
+  { category: 'Working on', title: 'Mobile Forensic', image: "{{ '/img/forensic.jpg' | prepend: site.baseurl }}", origin: '-450px 0' },
+  { category: 'Interested in', title: 'Web Programming', image: "{{ '/img/webdev.jpg' | prepend: site.baseurl }}", origin: '0' },
+];
+
+const $banner = $('#index-banner');
+const $bannerImage = $('#banner-image-current');
+const $bannerNextImage = $('#banner-image-next');
+
+function flipBanner() {
+  const idx = parseInt($banner.attr('data-banner'));
+  const next = (idx + 1) % banners.length;
+
+  $('#index-banner > .category > .next').html(banners[next].category);
+  $('#index-banner > .title > .next').html(banners[next].title);
+  $bannerNextImage.css('background-image', `url(${banners[next].image})`);
+  $bannerNextImage.css('background-position', banners[next].origin);
+
+  $bannerImage.toggleClass('fade');
+  $banner.addClass('flip');
+  $banner.attr('data-banner', next);
+
+  setTimeout(function () {
+    $('#index-banner > .category > .current').html(banners[next].category);
+    $('#index-banner > .title > .current').html(banners[next].title);
+    $bannerImage.css('background-image', `url(${banners[next].image})`);
+    $bannerImage.css('background-position', banners[next].origin);
+
+    $bannerImage.toggleClass('fade');
+    $banner.removeClass('flip');
+  }, 1000);
+}
+
+$(function () {
+  $('#index-banner > .category > .current').html(banners[0].category);
+  $('#index-banner > .title > .current').html(banners[0].title);
+  $bannerImage.css('background-image', `url(${banners[0].image})`);
+  $bannerImage.css('background-position', banners[0].origin);
+  
+  setInterval(flipBanner, 3000);
+});
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+  <style>
+    #show-iframe {
+      width: 100%;
+      height: 800px;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>성적 입력</h2>
+    <hr>
+
+    <form id="insert-form" class="needs-validation" novalidate>
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="student-id">학번</label>
+          <input type="text" class="form-control" id="student-id" placeholder="2019E1234" required>
+          <div class="invalid-feedback">학번이 올바르지 않습니다.</div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="student-name">이름</label>
+          <input type="text" class="form-control" id="student-name" placeholder="홍길동" required>
+          <div class="invalid-feedback">이름을 입력해주세요.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="student-korean">국어 점수</label>
+          <input type="number" class="form-control" id="student-korean" placeholder="0~100" required min="0" max="100">
+          <div class="invalid-feedback">0~100 사이의 값을 입력해 주세요.</div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="student-math">수학 점수</label>
+          <input type="number" class="form-control" id="student-math" placeholder="0~100" required min="0" max="100">
+          <div class="invalid-feedback">0~100 사이의 값을 입력해 주세요.</div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="student-english">영어 점수</label>
+          <input type="number" class="form-control" id="student-english" placeholder="0~100" required min="0" max="100">
+          <div class="invalid-feedback">0~100 사이의 값을 입력해 주세요.</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit">삽입</button>
+      <button class="btn btn-outline-secondary" type="reset">초기화</button>
+    </form>
+    <hr>
+  </div>
+
+  <iframe id="show-iframe" src="show.html?&noheader=true"></iframe>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/master.js"></script>
+  <script>
+    guard(['write']);
+
+    $(function () {
+      const inputForm = document.querySelector('#insert-form');
+      inputForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (inputForm.checkValidity() === false) {
+          // Prevent submit when validation has failed.
+          event.stopPropagation();
+          inputForm.classList.add('was-validated');
+          return;
+        }
+
+        const res = parent.site.runSQL('SELECT SID FROM Student WHERE SID = ?', [
+          document.querySelector('#student-id').value,
+        ]);
+        if (res.length != 0) {
+          alert('이미 학번이 존재합니다.');
+          return;
+        }
+
+        // Insert a record.
+        parent.site.runSQL('INSERT INTO Student (SID, Name, KoreanScore, MathScore, EnglishScore) VALUES (?,?,?,?,?);', [
+          document.querySelector('#student-id').value,
+          document.querySelector('#student-name').value,
+          document.querySelector('#student-korean').value,
+          document.querySelector('#student-math').value,
+          document.querySelector('#student-english').value,
+        ]);
+
+        const showFrame = document.querySelector('#show-iframe');
+        showFrame.contentDocument.location.reload(true);
+      }, false);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div class="category__list">
+  {% assign category = page.category | default: page.title %}
+  {% assign id = 1 %}
+  {% for post in site.categories[category] %}
+    <div class="category__element">
+      <a href="{{ post.url }}" class="d-flex align-items-end">
+        <div class="number">
+          {{ id }}
+        </div>
+  
+        <div class="post">
+          <div class="category">
+            {{ category }}
+          </div>
+          <div class="title">
+            {{ post.title | xml_escape | textilize }}
+          </div>
+        </div>
+      </a>
+    </div>
+
+    {% assign id = id | plus: 1 %}
+  {% endfor %}
+</div>

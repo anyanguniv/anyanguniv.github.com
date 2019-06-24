@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+  <div class="heading">
+    <h2>성적 확인</h2>
+    <hr>
+    <form id="search-form" method="GET">
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="student-id">학번</label>
+          <input type="text" class="form-control" id="student-id" name="sid" placeholder="2019E1234">
+        </div>
+
+        <div class="col-md-2 mb-3">
+          <label for="student-name">이름</label>
+          <input type="text" class="form-control" id="student-name" name="name" placeholder="홍길동">
+        </div>
+
+        <div class="col-md-auto mb-3">
+          <label>작업</label>
+          <div>
+            <button class="btn btn-primary" type="submit">검색</button>
+            <button class="btn btn-outline-secondary" type="reset">초기화</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>학번</th>
+        <th>이름</th>
+        <th>국어점수</th>
+        <th>수학점수</th>
+        <th>영어점수</th>
+        <th>평균</th>
+        <th>총점</th>
+        <th>작업</th>
+      </tr>
+    </thead>
+
+    <tbody id="table-tbody"></tbody>
+  </table>
+
+  <div id="record-update-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <form id="record-update-form" class="needs-validation" novalidate>
+          <input type="hidden" name="original-sid" value="">
+
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="student-id">학번</label>
+                <input type="text" class="form-control" name="sid" placeholder="2019E1234" readonly>
+              </div>
+      
+              <div class="col-md-3 mb-3">
+                <label for="student-name">이름</label>
+                <input type="text" class="form-control" name="name" placeholder="홍길동">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label for="student-korean">국어 점수</label>
+                <input type="number" class="form-control" name="korean-score" placeholder="0~100" required min="0" max="100">
+                <div class="invalid-feedback">0~100 사이의 값을 입력해 주세요.</div>
+              </div>
+      
+              <div class="col-md-3 mb-3">
+                <label for="student-math">수학 점수</label>
+                <input type="number" class="form-control" name="math-score" placeholder="0~100" required min="0" max="100">
+                <div class="invalid-feedback">0~100 사이의 값을 입력해 주세요.</div>
+              </div>
+      
+              <div class="col-md-3 mb-3">
+                <label for="student-english">영어 점수</label>
+                <input type="number" class="form-control" name="english-score" placeholder="0~100" required min="0" max="100">
+                <div class="invalid-feedback">0~100 사이의 값을 입력해 주세요.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">저장</button>
+            <button type="reset" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="js/master.js"></script>
+  <script>
+    const $tbody = $('#table-tbody');
+    const $recordUpdateModal = $('#record-update-modal');
+    const $recordUpdateForm = $('#record-update-form');
+
+    guard();
+
+    function showRecords() {
+      var whereClause = '';
+      var params = [];
+
+      if (urlParam('sid') || urlParam('name')) {
+        whereClause = 'WHERE SID LIKE ? OR Name LIKE ?';
+        params = [
+          urlParam('sid') ? '%' + urlParam('sid') + '%' : null,
+          urlParam('name') ? '%' + urlParam('name') + '%' : null,
+        ];
+      }
+
+      const records = parent.site.runSQL(`SELECT * FROM Student ${whereClause};`, params);
+
+      // Reset the table.
+      $tbody.html('');
+
+      for (var i = 0; i < records.length; ++i) {
+        const avgScore =
+          ((parseFloat(records[i].KoreanScore) + parseFloat(records[i].MathScore) + parseFloat(records[i].EnglishScore)) / 3).toFixed(2);
+        const totalScore = parseInt(records[i].KoreanScore) + parseInt(records[i].MathScore) + parseInt(records[i].EnglishScore)
+
+        var buttonsHTML = (parent.site.auth.user.can('write'))
+          ? `<button class="btn btn-sm btn-outline-primary" data-command="update" data-sid="${records[i].SID}">수정</button> ` + 
+            `<button class="btn btn-sm btn-outline-danger" data-command="delete" data-sid="${records[i].SID}">삭제</button>`
+          : '<button class="btn btn-sm btn-outline-secondary" disabled>작업 불가</button>';
+
+        $tbody.append(
+          '<tr>' +
+            `<td>${i + 1}</td>` +
+            `<td>${records[i].SID}</td>` +
+            `<td>${records[i].Name}</td>` +
+            `<td>${records[i].KoreanScore}</td>` +
+            `<td>${records[i].MathScore}</td>` +
+            `<td>${records[i].EnglishScore}</td>` +
+            `<td>${avgScore}</td>` +
+            `<td>${totalScore}</td>` +
+            '<td>' + buttonsHTML + '</td>' +
+          '</tr>');
+      }
+    }
+
+    $(function () {
+      showRecords();
+
+      if (urlParam('noheader') == 'true') {
+        $('.heading').addClass('d-none');
+      }
+
+      $('[data-command="update"]').on('click', function () {
+        const SID = $(this).attr('data-sid');
+        $recordUpdateForm.find('[name="original-sid"]').val(SID);
+
+        const record = parent.site.runSQL('SELECT * FROM Student WHERE SID = ?;', [SID])[0];
+        $recordUpdateForm.find('[name="sid"]').val(record.SID);
+        $recordUpdateForm.find('[name="name"]').val(record.Name);
+        $recordUpdateForm.find('[name="korean-score"]').val(record.KoreanScore);
+        $recordUpdateForm.find('[name="math-score"]').val(record.MathScore);
+        $recordUpdateForm.find('[name="english-score"]').val(record.EnglishScore);
+
+        $recordUpdateModal.find('.modal-title').html(`학생[${SID}] 레코드 갱신`);
+        $recordUpdateModal.modal();
+      });
+
+      $recordUpdateForm.on('submit', function (e) {
+        e.preventDefault();
+
+        const formDOM = $recordUpdateForm[0];
+        if (formDOM.checkValidity() === false) {
+          // Prevent submit when validation has failed.
+          event.stopPropagation();
+          formDOM.classList.add('was-validated');
+          return;
+        }
+
+        parent.site.runSQL(
+          'UPDATE Student SET Name = ?, KoreanScore = ?, MathScore = ?, EnglishScore = ? WHERE SID = ?;',
+          [
+          $recordUpdateForm.find('[name="name"]').val(),
+          $recordUpdateForm.find('[name="korean-score"]').val(),
+          $recordUpdateForm.find('[name="math-score"]').val(),
+          $recordUpdateForm.find('[name="english-score"]').val(),
+          $recordUpdateForm.find('[name="sid"]').val(),
+          ]);
+
+        window.location.reload(true);
+      });
+
+      $('[data-command="delete"]').on('click', function () {
+        if (!confirm('정말 삭제하시겠습니까?')) {
+          return;
+        }
+
+        const SID = $(this).attr('data-sid');
+        parent.site.runSQL('DELETE FROM Student WHERE SID = ?;', [SID]);
+
+        window.location.reload(true);
+      });
+    });
+  </script>
+</body>
+</html>

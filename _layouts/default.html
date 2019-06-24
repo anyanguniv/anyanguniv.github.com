@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!--
+    본 사이트는 직접 코딩하여 만들었으나, 템플릿 엔진의 사용으로 인해
+    일부 들여쓰기가 올바르지 않은 코드가 존재할 수 있습니다.
+  -->
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>201631001 고성훈</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+</head>
+<body>
+
+  <div class="site-container">
+    <header class="site-header d-flex">
+      <div class="brand-container">
+        <a href="{{ '/' | prepend: site.baseurl }}">
+          JavaScript
+        </a>
+      </div>
+      
+      <ul class="align-self-center">
+        <li><a href="{{ '/' | prepend: site.baseurl }}">About Me</a></li>
+        <li><a href="{{ '/category/html5' | prepend: site.baseurl }}">HTML5</a></li>
+        <li><a href="{{ '/category/css3' | prepend: site.baseurl }}">CSS3</a></li>
+        <li><a href="{{ '/category/js' | prepend: site.baseurl }}">JavaScript</a></li>
+        <li><a href="{{ '/project/score' | prepend: site.baseurl }}" target="_blank">JS Project</a></li>
+        <li><a href="{{ '/project/puzzle' | prepend: site.baseurl }}" target="_blank">SlidePuzzle</a></li>
+        <li><a href="/" target="_blank">Blog</a></li>
+      </ul>
+    </header>
+
+    <div class="article-container d-flex align-items-stretch">
+      <aside id="site-aside">
+        <ul class="site-aside-list">
+          <!--<li><a href="{{ '/' | prepend: site.baseurl }}">About Me</a></li>-->
+        </ul>
+
+        <div class="watermark">
+          <div class="d-inline-block">
+            <div><small>201631001</small></div>
+            <div><strong>Seonghun Ko</strong></div>
+          </div>
+        </div>
+      </aside>
+  
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      
+      <article id="site-article">
+        {{ content }}
+      </article>
+    </div>
+  </div>
+</body>
+</html>

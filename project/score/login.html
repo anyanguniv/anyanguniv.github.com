@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+  <div class="container">
+    <h1>로그인</h1>
+    <hr>
+  
+    <form id="login-form">
+      <div class="form-group row">
+        <label for="input-id" class="col-12 col-md-2 col-form-label">ID</label>
+        <div class="col-md-5 col-lg-3">
+          <input type="text" class="form-control" id="input-id">
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label for="input-passwd" class="col-md-2 col-form-label">비밀번호</label>
+        <div class="col-md-5 col-lg-3">
+          <input type="password" class="form-control" id="input-passwd">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="로그인">
+      </div>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $('#login-form').on('submit', function (e) {
+      e.preventDefault();
+
+      const user = $('#input-id').val();
+      const pass = $('#input-passwd').val();
+
+      const credential = parent.site.auth.login(user, pass);
+      if (credential != null) {
+        parent.site.navigate('show.html');
+      } else {
+        alert('로그인에 실패했습니다.');
+      }
+    });
+
+    $(function () {
+      if (parent.site && parent.site.auth.hasLogged) {
+        parent.site.navigate('show.html');
+      }
+    })
+  </script>
+</body>
+</html>

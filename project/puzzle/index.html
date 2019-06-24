@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SlidePuzzle - 201631001 고성훈</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Oswald&display=swap" rel="stylesheet">
+  <style>
+    /**
+     * Initializers.
+     */
+    * {
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    /**
+     * Classes.
+     */
+    .font-oswald {
+      font-family: 'Oswald', sans-serif;
+    }
+    .invisible {
+      opacity: 0;
+    }
+    .absolute-center {
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .container {
+      position: relative;
+      margin: auto;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .d-inline-block {
+      display: inline-block;
+    }
+
+    /**
+     * Header styles.
+     */
+    .game-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+    }
+    .game-header > .container {
+      width: 900px;
+    }
+    .nav-wrapper {
+      position: relative;
+      width: 100%;
+      height: 0px;
+      padding: 0 1em;
+      overflow: hidden;
+      color: white;
+      background-color: orange;
+      border-radius: 1em;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      transition: all 0.5s ease-out;
+    }
+    .game-header:hover .nav-wrapper {
+      height: 60px;
+    }
+    .open-container {
+      font-size: 20px;
+    }
+    .open-container > img{
+      width: 1em;
+    }
+    
+    /**
+     * Game settings form styles.
+     */
+    #game-setting-form {
+      padding: 10px 0;
+      font-size: 17px;
+    }
+    #game-setting-form input,
+    #game-setting-form select {
+      box-shadow: none;
+    }
+    #game-setting-form input:hover,
+    #game-setting-form select:hover {
+      box-shadow: 0 0 5px black;
+    }
+    #game-setting-form input[type="number"] {
+      width: 4em;
+      color: #333;
+      text-align: right;
+      border: 1px solid white;
+      border-radius: 5px;
+      background: white;
+    }
+    #game-setting-form select,
+    #game-setting-form input[type="submit"] {
+      padding: 5px;
+      color: black;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    #game-setting-form input[type="submit"]:disabled {
+      box-shadow: none;
+      background-color: gray;
+    }
+    .form-col {
+      display: inline-block;
+      padding: 0 0.5em;
+    }
+
+    /**
+     * Game body styles.
+     */
+    .game-wrapper {
+      margin-top: 120px;
+      text-align: center;
+    }
+    .game-table-wrapper {
+      display: inline-block;
+      position: relative;
+      text-align: center;
+    }
+    #game-message {
+      position: absolute;
+      max-width: 100%;
+      text-align: center;
+      color: rgba(128, 128, 128, 0.5);
+      font-weight: bold;
+      font-size: 100px;
+      line-height: 1.1;
+      transition: opacity 0.8s ease-out;
+      word-break: keep-all;
+    }
+    #game-cell-holder {
+      display: inline-block;
+      position: relative;
+      margin: auto;
+      padding: 5px;
+      overflow: hidden;
+      z-index: 100;
+      border: 4px solid orange;
+      background-color: rgba(230,230,230,0.5);
+      transition: opacity 1.2s;
+    }
+
+    /**
+     * Slider row & column wrapper styles.
+     */
+    .row-wrapper {
+      position: relative;
+      z-index: 1000;
+    }
+    .col-wrapper {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /**
+     * Slider cell styles.
+     */
+    .cell {
+      position: relative;
+      min-width: 120px;
+      min-height: 120px;
+      line-height: 120px;
+      color: #555;
+      font-size: 40px;
+      font-weight: bold;
+      border: 3px dashed transparent;
+      border-radius: 20px;
+      transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out, background-color 0.2s;
+      user-select: none;
+    }
+    [data-started="true"] .cell {
+      cursor: crosshair;
+    }
+    [data-started="true"] .cell[data-blank="false"]:hover {
+      box-shadow: 0 0 15px #888;
+      border-color: gray;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header class="game-header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <form id="game-setting-form" class="font-oswald text-center">
+          <div class="form-col">
+            <label for="rows">
+              By:
+              <!--<input type="number" name="by" value="3">-->
+              <select name="by">
+                <option value="3" selected>3x3</option>
+                <option value="4">4x4</option>
+                <option value="5">5x5</option>
+              </select>
+            </label>
+          </div>
+          
+          <div class="form-col">
+            <label for="countdown">
+              Countdown: <input type="number" name="countdown" value="3">s
+            </label>
+          </div>
+
+          <div class="form-col">
+            <label for="time">
+              Time: <input type="number" name="time" value="100">s
+            </label>
+          </div>
+
+          <div class="form-col">
+            <input type="submit" value="New Game">
+          </div>
+        </form>
+      </div>
+
+      <div class="open-container text-center">
+        <img src="open.svg" alt="Open menu">
+      </div>
+    </div>
+  </header>
+
+  <div class="game-wrapper">
+    <div class="game-table-wrapper">
+      <div id="game-message" class="font-oswald absolute-center">
+        READY
+      </div>
+
+      <div id="game-cell-holder" class="invisible">
+        <!-- Placeholder for game cells. -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main game scripts -->
+  <script src="slide-puzzle.js"></script>
+  <script>
+    ///////////////////////////////////////////////////////////////////////////
+    // Cached DOMs or objects.
+
+    const $gameTable = document.getElementById('game-cell-holder');
+    const $gameMessage = document.getElementById('game-message');
+    const $gameSettingsForm = document.getElementById('game-setting-form');
+    const gameSettingDOMs = {
+      // Contains setting related input field DOMs.
+      $by: document.querySelector('select[name="by"]'),
+      $countdown: document.querySelector('input[name="countdown"]'),
+      $time: document.querySelector('input[name="time"]'),
+      $submit: document.querySelector('input[type="submit"]'),
+    };
+
+    var gameInstance = null;
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Entry and event handlers.
+
+    document.body.onload = function () {
+      // For support Math.log10() in IE.
+      Math.log10 = Math.log10 || function (x) {
+        return Math.log(x) * Math.LOG10E;
+      }
+
+      // Put placeholder for sizing the game table.
+      new SlidePuzzle($gameTable, 3, 3);
+    };
+
+    $gameSettingsForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Validate time field.
+        const time = gameSettingDOMs.$time.value;
+        if (time <= 0 || time > 999) {
+          alert('Time should be the number between 1 to 999.');
+          return;
+        }
+
+        // Validate countdown field.
+        const countdown = gameSettingDOMs.$countdown.value;
+        if (countdown < 0 || countdown > 5) {
+          alert('Countdown should be the number between 0 to 5.');
+          return;
+        }
+
+        // Hide previous game table and disable the submit button for the timers.
+        gameSettingDOMs.$submit.disabled = true;
+        $gameTable.classList.add('invisible');
+
+        if (gameInstance != null) {
+          // If previous game has not finished, stop the game first.
+          gameInstance.stopGame(false);
+        }
+
+        onGameReady();
+
+        // Unhide the game table and start a game.
+        setTimeout(function () {
+          const by = gameSettingDOMs.$by.value;
+          
+          $gameTable.classList.remove('invisible');
+          gameInstance = new SlidePuzzle($gameTable, by, by);
+          gameInstance.startGame(countdown, time);
+        }, 1000);
+      });
+    
+    ///////////////////////////////////////////////////////////////////////////
+    // Game event handlers.
+
+    function onGameReady() {
+      $gameMessage.innerHTML = 'READY';
+      $gameMessage.classList.remove('invisible');
+    }
+
+    function onGameStarted() {
+      // Enable the disabled submit button.
+      gameSettingDOMs.$submit.disabled = false;
+    }
+
+    function onGameSet(hasPlayerWon) {
+      $gameMessage.innerHTML = hasPlayerWon ? 'YOU WIN' : 'GAME OVER';
+      $gameMessage.classList.remove('invisible');
+      $gameTable.classList.add('invisible');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // SlidePuzzle event handler overrides.
+
+    SlidePuzzle.prototype.onGameStarting = onGameReady;
+    SlidePuzzle.prototype.onGameStarted = onGameStarted;
+    SlidePuzzle.prototype.onGameSet = onGameSet;
+
+    SlidePuzzle.prototype.onCountdown = function (remains) {
+      $gameMessage.innerHTML = remains;
+    };
+
+    SlidePuzzle.prototype.onGameTick = function (resolution) {
+      $gameMessage.innerHTML = 'GO!<br><small><b>' + this.timesLeft.toFixed(Math.log10(resolution) - 1) + 's</b></small>';
+    };
+
+    ///////////////////////////////////////////////////////////////////////////
+    // SlidePuzzle method overrides.
+
+    SlidePuzzle.prototype.createRowDOM = function (row) {
+      const $row = document.createElement('div');
+      $row.classList.add('row-wrapper');
+      return $row;
+    };
+
+    SlidePuzzle.prototype.createColumnDOM =
+      function (row, col, val, onClickEventHandler) {
+        // Create column(cell) wrapper.
+        const $col = document.createElement('div');
+        $col.classList.add('col-wrapper');
+
+        // Create internal column(cell) DOM.
+        const $cell = document.createElement('div');
+        $cell.classList.add('cell');
+        $cell.setAttribute('data-row', row);
+        $cell.setAttribute('data-col', col);
+        $cell.setAttribute('data-val', val);
+        $cell.addEventListener('click', onClickEventHandler.bind(this));
+        if (val != null) {
+          $cell.setAttribute('data-blank', false);
+          $cell.appendChild(document.createTextNode(val));
+        } else {
+          // Set the cell to blank.
+          $cell.setAttribute('data-blank', true);
+        }
+
+        $col.appendChild($cell);
+        return $col;
+      };
+
+    SlidePuzzle.prototype.getCellDataFromDOM = function ($cell) {
+      return {
+        row: $cell.getAttribute('data-row'),
+        col: $cell.getAttribute('data-col'),
+        val: $cell.getAttribute('data-val'),
+        isBlank: $cell.getAttribute('data-blank'),
+      };
+    };
+
+    SlidePuzzle.prototype.getBlankCellData = function () {
+      return this.getCellDataFromDOM(
+        document.querySelector('[data-blank="true"]'));
+    };
+
+    SlidePuzzle.prototype.swapDOMs = function (targetCell) {
+      const $targetCell = document.querySelector('[data-val="' + targetCell.val + '"]');
+      const $blankCell = document.querySelector('[data-blank="true"');
+
+      $blankCell.setAttribute('data-val', targetCell.val);
+      $blankCell.setAttribute('data-blank', false);
+      $blankCell.innerHTML = targetCell.val;
+
+      $targetCell.setAttribute('data-val', null);
+      $targetCell.setAttribute('data-blank', true);
+      $targetCell.innerHTML = '';
+    };
+  </script>
+</body>
+</html>
